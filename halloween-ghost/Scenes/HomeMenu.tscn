@@ -1,34 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqx5uqi3rx3k6"]
+[gd_scene load_steps=10 format=3 uid="uid://cqx5uqi3rx3k6"]
 
 [ext_resource type="Texture2D" uid="uid://cudigbx5u3vos" path="res://Graveyard/Parallax Background/Background/Sky.png" id="1_6wkxr"]
+[ext_resource type="Script" path="res://Scenes/canvas_layer.gd" id="1_dpuyc"]
 [ext_resource type="Texture2D" uid="uid://boyllgbk5t3b7" path="res://Graveyard/Parallax Background/Background/Cloud 3.png" id="2_mnvwx"]
 [ext_resource type="Texture2D" uid="uid://danqqgqmon3ka" path="res://Graveyard/Parallax Background/Background/Cloud 2.png" id="3_58bbf"]
 [ext_resource type="Texture2D" uid="uid://dy4e3hs0yrcrs" path="res://Graveyard/Parallax Background/Background/Cloud 1.png" id="4_ucqtb"]
 [ext_resource type="Texture2D" uid="uid://over64hx7yu2" path="res://Graveyard/Parallax Background/Background/Moon.png" id="5_al8hr"]
 [ext_resource type="Texture2D" uid="uid://c2ajirydx5md4" path="res://Graveyard/Parallax Background/Mountain/Mountain 2.png" id="6_wspaw"]
 [ext_resource type="Texture2D" uid="uid://cbbhjdtq6n531" path="res://Graveyard/Parallax Background/Mountain/Mountain 1.png" id="7_gnwki"]
+[ext_resource type="AudioStream" uid="uid://ctsc858a0gemm" path="res://Music/halloween-night-30s-240048.mp3" id="8_m1nlv"]
 
 [node name="HomeMenu" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_dpuyc")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Play" type="Button" parent="CanvasLayer"]
 custom_minimum_size = Vector2(250, 100)
 offset_left = 446.0
 offset_top = 419.0
 offset_right = 696.0
 offset_bottom = 519.0
 theme_override_font_sizes/font_size = 50
-text = "Exit"
+text = "Play"
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
+[node name="Exit" type="Button" parent="CanvasLayer"]
 custom_minimum_size = Vector2(250, 100)
 offset_left = 447.0
 offset_top = 298.0
 offset_right = 697.0
 offset_bottom = 398.0
 theme_override_font_sizes/font_size = 50
-text = "Play"
+text = "Exit
+"
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(380, 0)
@@ -62,7 +66,7 @@ texture = ExtResource("3_58bbf")
 
 [node name="Cloud 1" type="Parallax2D" parent="."]
 scale = Vector2(3.60156, 3.61944)
-repeat_size = Vector2(380, 0)
+repeat_size = Vector2(319, 0)
 autoscroll = Vector2(500, 0)
 repeat_times = 100
 
@@ -82,7 +86,7 @@ texture = ExtResource("5_al8hr")
 
 [node name="Mountain2" type="Parallax2D" parent="."]
 scale = Vector2(3.60156, 3.61944)
-repeat_size = Vector2(380, 0)
+repeat_size = Vector2(319, 0)
 autoscroll = Vector2(100, 0)
 repeat_times = 100
 
@@ -92,10 +96,20 @@ texture = ExtResource("6_wspaw")
 
 [node name="Mountain1" type="Parallax2D" parent="."]
 scale = Vector2(3.60156, 3.61944)
-repeat_size = Vector2(380, 0)
+repeat_size = Vector2(319, 0)
 autoscroll = Vector2(100, 0)
 repeat_times = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="Mountain1"]
 position = Vector2(159.375, 91.4505)
 texture = ExtResource("7_gnwki")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(576.001, 333)
+scale = Vector2(3.60156, 3.61944)
+stream = ExtResource("8_m1nlv")
+autoplay = true
+parameters/looping = false
+
+[connection signal="button_down" from="CanvasLayer/Play" to="CanvasLayer" method="_on_button_button_down"]
+[connection signal="pressed" from="CanvasLayer/Play" to="CanvasLayer" method="_on_button_pressed"]
